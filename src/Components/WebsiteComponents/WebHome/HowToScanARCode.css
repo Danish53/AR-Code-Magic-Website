@@ -1,0 +1,16 @@
+.btn-custom{
+    background: var(--btn-color);
+    color: #fff;
+    font-weight: 800;
+    /* box-shadow: 0 4px 10px #aec0f0; */
+    text-transform: capitalize;
+    /* border: groove; */
+    /* border-block-color: var(--primary-color); */
+}
+.btn-custom:hover{
+    background-color: var( --btn-color);
+    color: white;
+    border: 1px solid white;
+    
+    /* border-block-color: #fff; */
+}

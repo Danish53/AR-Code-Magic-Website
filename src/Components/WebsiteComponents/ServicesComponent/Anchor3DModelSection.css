@@ -1,0 +1,11 @@
+
+
+/* .feature-link{
+    max-height: 250px;
+} */
+
+.feature-link .feature-img{
+    max-height: 250px;
+    /* max-height: 250px; */
+    width: 100%;
+}

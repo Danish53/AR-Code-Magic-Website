@@ -1,0 +1,62 @@
+.navbar{
+    box-shadow: 0px 0px 10px 0px rgba(92, 95, 101, 0.1);
+    background-color: var(--primary-color) !important;
+}
+.navbar-brand .logo{
+/* width: 50px; */
+width: 100%;
+height: 65px;
+/* width: 75px;
+height: 50px; */
+}
+
+.navbar ul li a{
+    /* color: white !important; */
+    font-size: 1.4rem;
+    font-weight: 900 !important;
+}
+.navbar .navbar-nav .nav-item .nav-link{
+    font-weight: 900 !important;
+   color: white !important;
+}
+
+/* Override for white navbar toggler icon */
+.navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+  /* Override focus styles for the navbar toggler button */
+.navbar-toggler {
+    border: 1px solid #fff; 
+  }
+.navbar-toggler:focus {
+    outline: none;
+    box-shadow: 0 0 0 var(--bs-navbar-toggler-focus-width) #fff;
+  }
+  
+
+
+
+
+
+
+/* Smooth fade-in and fade-out effect for mobile */
+/* .fade-in {
+  opacity: 1;
+ 
+  transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out;
+}
+
+.fade-out {
+  opacity: 0;
+  max-height: 0;
+  transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out;
+  overflow: hidden;
+} */
+
+/* Prevent Bootstrap from hiding the navbar collapse on mobile during fade-out */
+/* @media (max-width: 991px) {
+  .navbar-collapse.fade-out {
+    display: block !important;
+  }
+} */
+

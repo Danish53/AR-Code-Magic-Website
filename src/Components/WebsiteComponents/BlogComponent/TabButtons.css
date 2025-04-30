@@ -1,0 +1,36 @@
+.CustomNavTab{
+    border: none;
+}
+
+.CustomTabBtn {
+    color: var(--primary-color) !important;
+    border: 1px solid var(--primary-color) !important;
+    background-color: white;
+    font-weight: 700;
+    border-radius: 7px;
+    padding: 8px;
+    font-size: 1rem;
+    /* box-shadow: 0 4px 10px #aec0f0; */
+}
+
+.CustomTabBtn:hover {
+    background: var(--primary-color) !important;
+    color: white !important;
+    /* border: none !important; */
+}
+
+.CustomTabBtn:active, .CustomTabBtn:focus {
+    color: var(--primary-color-hover) !important;
+    color: white !important;
+    /* border: none; */
+    /* font-weight: 700; */
+}
+
+.CustomTabBtn.active {
+    /* color: var(--primary-color) !important;
+    font-weight: 700; */
+    color: white !important;
+    font-weight: 700;
+    background: var(--primary-color) !important;
+    border-radius: 7px;
+}

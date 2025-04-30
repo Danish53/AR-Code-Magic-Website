@@ -1,0 +1,7 @@
+.imagemainlogo{
+    border: 1px solid;
+    border-color: #EEE;
+    box-shadow: none;
+    max-width: 400px !important;
+    width: 100%;
+}

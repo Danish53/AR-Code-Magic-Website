@@ -1,0 +1,75 @@
+.custom-row {
+    border: 1px solid #EEE;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .custom-col {
+    border: 1px solid #EEE;
+    padding: 10px;
+  }
+  
+  .fixed-text-container {
+    max-width: 500px; 
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+  }
+.form-label{
+  font-weight: 700;
+}
+
+  
+/* ////// */
+/* Styling the slider track */
+/* Styling the slider track globally */
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px;
+  /* background: var(--slider-track-color, #ccc); Default gray background for the track */
+  border-radius: 5px; /* Rounded track */
+}
+
+/* Styling the slider handle (thumb) globally */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Remove default browser styling */
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%; /* Circular thumb */
+  background: var(--slider-thumb-color, var(--primary-color)); /* Default thumb color */
+  cursor: pointer;
+  margin-top: -6px; /* Align thumb with the track */
+}
+
+/* Thumb styling when active (being moved) */
+input[type="range"]:active::-webkit-slider-thumb {
+  background: var(--primary-color); 
+}
+
+/* Thumb styling when focused */
+input[type="range"]:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 1px 2px var(--primary-color);
+  background: var(--primary-color); 
+}
+
+/* For Firefox */
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--slider-thumb-color, var(--primary-color));
+  cursor: pointer;
+}
+
+/* For MS Edge */
+input[type="range"]::-ms-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--slider-thumb-color, var(--primary-color));
+  cursor: pointer;
+}
+

@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+:root {
+  --bg-main: #F4F6FC;
+  --primary-color : #003C5E;
+  /* --primary-color : rgb(0, 128, 0); */
+  /* --primary-color-hover : rgb(11, 82, 11); */
+  /* --primary-light : #c0f3c0; */
+  --primary-light : #003C5E;
+  --link-color : #20B2AA;
+  --link-color-hover : #1C8B7D;
+  --btn-color : #EB5C2B;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-main);
+  /* background: linear-gradient(to bottom right, #d61321, #1a1a1a); ; */
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.1rem;
+}
+h1,h2,h3{
+  color: var(--primary-color);
+}
+/* h1,h2,h3{
+  color: var(--primary-color);
+} */
+/* theam color */
+.bg-primary-color{
+  background-color: var(--primary-color);
+}
+.text-primary-color{
+  color: var(--primary-color);
+}
+.bg-primary-hover{
+  background-color: var(--primary-color-hover);
+}
+.text-primary-hover{
+  color: var(--primary-color-hover);
+}
+.bg-primary-light{
+  background-color: var(--primary-light);
+}
+.text-primary-light{
+  color: var(--primary-light);
+}
+/* theam color */
+
+a, .btn-link{
+  color: var(--link-color);
+  /* color: #3CB371; */
+  /* color: #007bff; */
+  /* color: var(--primary-color); */
+  /* text-decoration: none; */
+}
+a:hover, .btn-link:hover {
+  color: var(--link-color-hover); 
+  /* color: #2E8B57;  */
+  /* color: #0056b3;  */
+  /* color: var( --primary-color-hover);  */
+  /* text-decoration: underline; */
+}
+/* bootstrap classes for text classes*/
+.text-primary, .btn-primary {
+  color: var(--primary-color) !important;
+}
+
+/* .btn-check:checked+.btn, 
+.btn.active, .btn.show, 
+.btn:first-child:active, :not(.btn-check)+.btn:active {
+ background-color: var(--primary-color-hover);
+ border-color: var(--primary-color-hover);
+} */
+
+/* .btn-check:checked+.btn, 
+.btn.active {
+ background-color: var(--primary-color-hover);
+ border-color: var(--primary-color-hover);
+} */
+
+
+/* bootstrap classes for background color*/
+.btn-success, .btn-primary, .dropdown-item.active, .dropdown-item:active {
+  background-color: var(--btn-color);
+  /* border: white; */
+}
+.btn-success, .btn-primary {
+  border: 1px solid var(--btn-color);
+}
+.btn-success:hover,
+.btn-primary:hover {
+  background-color: var(--btn-color);
+  border: 1px solid var(--btn-color);
+}
+
+.btn-success:active{
+  background-color: var(--btn-color) !important;
+  border: 1px solid var(--btn-color) !important;
+}
+.btn-success:focus-visible{
+  background-color: var(--btn-color) !important;
+  border: 1px solid var(--btn-color) !important;
+}
+
+.btn-outline-success{
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);  
+}
+.btn-outline-success:hover,
+.btn-outline-success:active{
+  border: 1px solid var(--primary-color) !important;
+  background-color: var(--primary-color)!important;
+}
+
+/* .btn:hover {
+  color: var(--bs-btn-hover-color);
+  background-color: var(--primary-color-hover);
+  border-color: var(--primary-color-hover);
+} */
+/* bootstrap classes for text classes*/
+
+/* user sidebar bootstrap*/
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  background-color: var(--primary-color);
+}
+
+
+.nav-pills .nav-link.active:hover, 
+.nav-pills .show>.nav-link:hover, 
+.nav-pills .nav-link:hover {
+  background-color: var(--primary-color);
+}
+
+
+
+/* user sidebar */
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  /* Removes the default browser focus outline */
+  box-shadow: none !important;
+  /* Removes the Bootstrap blue shadow */
+  border-color: inherit !important;
+  /* Keeps the border color as it is */
+}
+
+.btn-outline-light {
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.4);
+}
+
+.custom-container {
+  margin: 0 120px;
+}
+
+.custom-gap {
+  gap: 80px;
+}
+
+.web-font-size {
+  font-size: 1.25rem;
+}
+
+@media (max-width: 991px) {
+  .custom-container {
+    margin: 0;
+  }
+
+  .custom-gap {
+    gap: 0;
+  }
+
+  .web-font-size {
+    font-size: 1rem;
+  }
+}
+

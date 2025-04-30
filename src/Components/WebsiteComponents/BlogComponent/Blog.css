@@ -1,0 +1,14 @@
+.blog-description, .heading-blog {
+    display: -webkit-box;        /* Use a flexible box layout */
+    -webkit-box-orient: vertical; /* Set the box orientation to vertical */
+    -webkit-line-clamp: 2;       /* Limit to 2 lines */
+    overflow: hidden;            /* Hide overflowing content */
+    text-overflow: ellipsis;     /* Add an ellipsis (...) for overflow */
+  }
+  
+
+  @media (max-width: 776px) { 
+    .blog-description, .heading-blog{
+        -webkit-line-clamp: 4;       
+    }
+  }

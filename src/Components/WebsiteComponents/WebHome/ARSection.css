@@ -1,0 +1,17 @@
+.primary-light{
+    background-color:var(--primary-light);
+}
+
+/* ARSection.css */
+
+.qr-card img {
+    height: 100%;
+    width: 100%; /* Maintain aspect ratio */
+    /* object-fit: contain;  */
+    /* max-height: 200px; */
+  }
+  
+  .qr-card {
+    height: 200px; 
+  }
+  

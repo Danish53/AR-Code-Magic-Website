@@ -1,0 +1,27 @@
+.navlinkCustom {
+    color: var(--primary-color) !important;
+    font-weight: 700;
+    border-radius: 7px;
+}
+
+.navlinkCustom:hover {
+    background: var(--primary-color) !important;
+    color: white !important;
+    /* border: none !important; */
+}
+
+.navlinkCustom:active, .navlinkCustom:focus {
+    color: var(--primary-color-hover) !important;
+    color: white !important;
+    /* border: none; */
+    /* font-weight: 700; */
+}
+
+.navlinkCustom.active {
+    /* color: var(--primary-color) !important;
+    font-weight: 700; */
+    color: white !important;
+    font-weight: 700;
+    background: var(--primary-color) !important;
+    border-radius: 7px;
+}

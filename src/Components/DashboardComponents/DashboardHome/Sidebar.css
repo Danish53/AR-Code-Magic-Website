@@ -1,0 +1,78 @@
+/* Sidebar.css */
+
+/* Remove default Bootstrap link styles */
+.navlink-custom {
+    color: #000 !important; /* Black text for default state */
+    border-radius: 30px; /* Rounded edges */
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Hover state */
+  .navlink-custom:hover {
+    background-color: var(--primary-color); /* Blue background on hover */
+    color: #fff !important; /* White text */
+  }
+  
+  /* Active state */
+  .navlink-custom.active {
+    background-color: var(--primary-color); /* Blue background */
+    color: #fff !important; /* White text */
+  }
+  
+  /* Disabled links */
+  .navlink-custom.disabled {
+    color: #aaa !important; /* Gray for disabled links */
+    cursor: not-allowed;
+  }
+  
+.membership-link{
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+}
+.membership-link:hover{
+    text-decoration: none;
+    color: var(--primary-color);
+}
+.membership-section{
+    display: flex;
+    align-items: center;
+}
+.standard-link{
+    padding: 3px 5px;
+    background-color: var(--primary-color);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.standard-link:hover{
+  color: #fff;
+}
+
+/* Stats Section */
+.stats-section p {
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+}
+.sidebar-icons {
+  width: 24px !important;
+  height: 24px !important;
+  flex-shrink: 0; /* Prevent shrinking in flex containers */
+}
+
+@media (max-width: 992px) {
+  .dashboardsb-links{
+    flex-direction: row !important;
+  }
+  .stats-section{
+    display: none;
+  }
+  .sidebar-icons{
+    margin-right: 0 !important;
+  }
+}
