@@ -347,6 +347,7 @@ const DD1_ArTextSection = () => {
                       <model-viewer
                         src={modelUrl}
                         alt="3D Text Model"
+                        ar
                         auto-rotate
                         camera-controls
                         style={{ width: "280px", height: "280px", padding: "20px" }}

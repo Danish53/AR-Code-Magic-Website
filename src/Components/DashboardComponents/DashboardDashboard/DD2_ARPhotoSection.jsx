@@ -682,6 +682,7 @@ const DD2_ARPhotoSection = () => {
                       <model-viewer
                         src={modelUrl}
                         alt="3D Photo Model"
+                        ar
                         auto-rotate
                         camera-controls
                         style={{ width: "280px", height: "280px", padding: "20px" }}

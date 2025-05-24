@@ -21,16 +21,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { RouterProvider } from 'react-router-dom';
 import router from './routes/index';
-import { ContextProvider } from './ContextApi';
+// import { ContextProvider } from './ContextApi';
 // import store from './redux/store';
 // import { Provider } from 'react-redux';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* <Provider store={store}> */}
-    <ContextProvider>
+    {/* <ContextProvider> */}
       <RouterProvider router={router} />
-    </ContextProvider>
+    {/* </ContextProvider> */}
     {/* </Provider> */}
   </StrictMode>
 );
