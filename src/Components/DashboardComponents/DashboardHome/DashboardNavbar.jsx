@@ -191,11 +191,22 @@ import React, { useState, useEffect } from 'react';
 import './DashboardNavbar.css';
 import logo from '../../../assets/logo/arlogo.png';
 import { FaCog, FaUserFriends, FaCogs, FaSignOutAlt } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { logout } from '../../../redux/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 function DashboardNavbar() {
+  const { user } = useSelector((state) => state.auth)
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 992);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/user/login");
+  };
 
   // Update isDesktop state on window resize
   useEffect(() => {
@@ -216,8 +227,8 @@ function DashboardNavbar() {
 
   const navLinks = [
     { name: 'Dashboard', path: '/user' },
-    { name: 'Blog', path: '/blog' },
-    { name: 'FAQ', path: '/faq' },
+    { name: 'Blog', path: 'blog' },
+    { name: 'FAQ', path: 'faq' },
   ];
 
   const settingsDropdown = [
@@ -261,7 +272,7 @@ function DashboardNavbar() {
     <nav className="navbar navbar-expand-lg navbar-light bg-white px-4">
       <div className="container">
         {/* Logo */}
-        <Link className="navbar-brand fw-bold" to="/">
+        <Link className="navbar-brand fw-bold" to="">
           <img src={logo} className="logo" alt="AR Code Magic" />
         </Link>
 
@@ -292,6 +303,9 @@ function DashboardNavbar() {
               </li>
             ))}
 
+            {
+              user?.user?.role !== "user" ? "" : <Link to={"pricing"} ><li className='btn btn-primary text-white'>Upgrade</li></Link>
+            }
             {/* Settings Dropdown */}
             <li className="nav-item dropdown">
               <Link
@@ -307,14 +321,23 @@ function DashboardNavbar() {
               <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="settingsDropdown">
                 {settingsDropdown.map((item, index) => (
                   <li key={index}>
-                    {item.name === 'Logout' ? <hr className="dropdown-divider" /> : null}
-                    <Link
-                      className={`dropdown-item ${item.className || ''}`}
-                      to={item.path}
-                      onClick={closeNavbar}
-                    >
-                      {item.icon} {item.name}
-                    </Link>
+                    {item.name === "Logout" ? <hr className="dropdown-divider" /> : null}
+                    {item.name === "Logout" ? (
+                      <button
+                        className={`dropdown-item ${item.className || ""}`}
+                        onClick={handleLogout}
+                      >
+                        {item.icon} {item.name}
+                      </button>
+                    ) : (
+                      <Link
+                        className={`dropdown-item ${item.className || ""}`}
+                        to={item.path}
+                        onClick={() => setIsNavOpen(false)}
+                      >
+                        {item.icon} {item.name}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

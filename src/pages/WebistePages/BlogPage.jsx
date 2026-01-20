@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TabButtons from "../../Components/WebsiteComponents/BlogComponent/TabButtons";
 import Blog from "../../Components/WebsiteComponents/BlogComponent/Blog";
 import Pagination from "../../Components/WebsiteComponents/BlogComponent/Pagination";
 import BlogDetails from "../../Components/WebsiteComponents/BlogComponent/BlogDetails";
 import BlogSidebar from "../../Components/WebsiteComponents/BlogComponent/BlogSidebar";
+import axios from "axios";
 
 function BlogPage() {
   const [activeTab, setActiveTab] = useState(null);
@@ -12,112 +13,56 @@ function BlogPage() {
   const [selectedBlog, setSelectedBlog] = useState(null); // State to track the selected blog
   const blogsPerPage = 7;
 
-  const blogs = [
-    {
-      title: "From Video to 3D Modeling: Photogrammetry with AR Code Object Capture",
-      date: "31/12/2024",
-      category: "Apple ARKit",
-      image: "https://ar-code.com/images/ar-portal-visionos.webp",
-      description:
-        "Our AR Code Object Capture app is now available for MacBook M-series devices running macOS 15.0 or later...",
-      link: "https://ar-code.com/blog/video-to-3d-modeling-photogrammetry-ar-code-object-capture-now-on-macbook-m-series",
-    },
-    {
-      title: "Exploring the Metaverse: Opportunities and Challenges",
-      date: "01/01/2025",
-      category: "Metaverse",
-      image: "https://ar-code.com/images/second-life.webp",
-      description:
-        "Discover the latest developments in the metaverse and how it’s shaping the future of technology...",
-      link: "https://ar-code.com/blog/metaverse-exploration",
-    },
-    {
-      title: "Creating Realistic 3D Models with AR Code",
-      date: "15/01/2025",
-      category: "3D Models",
-      image: "https://ar-code.com/images/macos-object-capture.webp",
-      description:
-        "Learn how AR Code's advanced tools help you create detailed 3D models quickly and efficiently. Learn how AR Code's advanced tools help you create detailed 3D models quickly and efficiently.Learn how AR Code's advanced tools help you create detailed 3D models quickly and efficiently.  ",
-      link: "https://ar-code.com/blog/creating-realistic-3d-models",
-    },
-    {
-      title: "Unveiling the Power of Apple Vision Pro",
-      date: "20/01/2025",
-      category: "Apple Vision Pro",
-      image: "https://ar-code.com/images/apple-vision-pro.webp",
-      description:
-        "Discover the groundbreaking features of Apple Vision Pro and its applications in AR development. Discover the groundbreaking features of Apple Vision Pro and its applications in AR development.Discover the groundbreaking features of Apple Vision Pro and its applications in AR development.",
-      link: "https://ar-code.com/blog/apple-vision-pro-unveiled",
-    },
-    {
-      title: "Advancements in AR Code Technology",
-      date: "25/01/2025",
-      category: "AR Code Tech",
-      image: "https://ar-code.com/images/mw3QkGasX.webp",
-      description:
-        "Explore the latest updates and features introduced in AR Code's technology platform.",
-      link: "https://ar-code.com/blog/advancements-in-ar-code-tech",
-    },
-    {
-      title: "Top AR Glasses & Headsets for 2025",
-      date: "30/01/2025",
-      category: "AR Glasses & Headsets",
-      image: "https://ar-code.com/images/nreal-ar-glasses-l500.jpg",
-      description:
-        "A comprehensive guide to the best AR glasses and headsets available in 2025.",
-      link: "https://ar-code.com/blog/top-ar-glasses-and-headsets-2025",
-    },
-    {
-      title: "Your Questions About AR Code Answered",
-      date: "05/02/2025",
-      category: "Q & A",
-      image: "https://ar-code.com/images/2pZAPgHSW.webp",
-      description:
-        "Get answers to the most common questions about using AR Code and its features.",
-      link: "https://ar-code.com/blog/ar-code-q-and-a",
-    },
-    {
-      title: "Revolutionizing QR Code Tech with AR Code",
-      date: "10/02/2025",
-      category: "QR Code Tech",
-      image: "https://ar-code.com/images/ar-code-drone.webp",
-      description:
-        "Learn how AR Code is transforming the way we use QR codes in everyday life.",
-      link: "https://ar-code.com/blog/revolutionizing-qr-code-tech",
-    },
-    {
-      title: "Step-by-Step Tutorials for AR Beginners",
-      date: "15/02/2025",
-      category: "Tutorials",
-      image: "https://ar-code.com/images/ar-code-studio.webp",
-      description:
-        "Beginner-friendly tutorials to get started with AR development using AR Code.",
-      link: "https://ar-code.com/blog/ar-beginners-tutorials",
-    },
-    {
-      title: "Join Our Upcoming Webinar on AR Development",
-      date: "20/02/2025",
-      category: "Webinar",
-      image: "https://ar-code.com/images/blippar-vs-ar-code.webp",
-      description:
-        "Register for our upcoming webinar to learn from experts about the future of AR development.",
-      link: "https://ar-code.com/blog/upcoming-ar-webinar",
-    },
-    
-  ];
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const tabs = [
-    "3D Models",
-    "Apple Vision Pro",
-    "Apple ARKit",
-    "AR Code Tech",
-    "AR Glasses & Headsets",
-    "Metaverse",
-    "Q & A",
-    "QR Code Tech",
-    "Tutorials",
-    "Webinar",
-  ];
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await axios.get(import.meta.env.VITE_DOMAIN + "/api/v1/user/blog-categories");
+        setCategories(res.data.categories);
+      } catch (err) {
+        setError(err.message || "Failed to fetch categories");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await axios.get(import.meta.env.VITE_DOMAIN + "/api/v1/user/blogs");
+        setBlogs(res.data.blog);
+      } catch (err) {
+        setError(err.message || "Failed to fetch Blogs");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
+
+  const categories_skelton = () => {
+    return (
+      <ul className="nav justify-content-center my-4">
+        {[...Array(5)].map((_, i) => (
+          <li className="nav-item" key={i}>
+            <div className="nav-link skeleton-tab"></div>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  // if (loading) return <p className="text-center mt-4">Loading categories...</p>;
+  // if (error) return <p className="text-danger text-center mt-4">{error}</p>;
 
   const handleTabChange = (selectedTab) => {
     setActiveTab(selectedTab);
@@ -132,8 +77,8 @@ function BlogPage() {
   };
 
   const filteredBlogs = blogs.filter((blog) => {
-    const matchesTab = activeTab ? blog.category === activeTab : true;
-    const matchesSearch = blog.title
+    const matchesTab = activeTab ? blog.category.category_name === activeTab : true;
+    const matchesSearch = blog.blog_title
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
     return matchesTab && matchesSearch;
@@ -148,7 +93,9 @@ function BlogPage() {
     <div className="container mt-5">
       <h2 className="text-center fw-bold mb-4">AR Code Blog</h2>
       <div className="mb-4 d-flex justify-content-center">
-        <TabButtons tabs={tabs} onTabChange={handleTabChange} />
+        {
+          loading ? categories_skelton() : <TabButtons categories={categories} onTabChange={handleTabChange} />
+        }
       </div>
       <div className="row">
         <div className="col-lg-8">
@@ -170,7 +117,8 @@ function BlogPage() {
               <Blog
                 blogs={paginatedBlogs}
                 activeTab={activeTab}
-                onBlogClick={setSelectedBlog} // Pass the handler
+                onBlogClick={setSelectedBlog}
+                loading={loading}
               />
             )}
           </div>
@@ -186,7 +134,7 @@ function BlogPage() {
         </div>
         <div className="col-lg-4 mt-4 mt-lg-0">
           {/*Blog Details Sidebar  */}
-          <BlogSidebar/>
+          <BlogSidebar />
         </div>
       </div>
     </div>

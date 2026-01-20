@@ -21,16 +21,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { RouterProvider } from 'react-router-dom';
 import router from './routes/index';
+import { Toaster } from 'react-hot-toast';
 // import { ContextProvider } from './ContextApi';
-// import store from './redux/store';
-// import { Provider } from 'react-redux';
+import store from './redux/store';
+import { Provider } from 'react-redux';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* <Provider store={store}> */}
+    <Provider store={store}>
     {/* <ContextProvider> */}
+      <Toaster position="top-right" reverseOrder={false} />
       <RouterProvider router={router} />
     {/* </ContextProvider> */}
-    {/* </Provider> */}
+    </Provider>
   </StrictMode>
 );

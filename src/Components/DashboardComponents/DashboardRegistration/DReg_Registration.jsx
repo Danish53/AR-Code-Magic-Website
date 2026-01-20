@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-// import axios from "axios";
-// import { authFail, signupSuccess } from "../../../redux/authSlice";
-import { Toaster } from "react-hot-toast"
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 function DReg_Registration() {
-
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState();
 
   const [formData, setFormData] = useState({
     user_name: "",
@@ -23,49 +20,41 @@ function DReg_Registration() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // try {
-    //   const response = await axios.post(import.meta.env.VITE_DOMAIN + 'api/v1/user/register', formData);
-    //   console.log(response.data, "response././..");
-    //   const successMessage = response?.data?.message || "Signup Succesfull";
-    //   // dispatch(signupSuccess(successMessage));
-    //   toast.success(successMessage);
-    //   setTimeout(() => {
-    //     navigate("/user/login");
-    //   }, 2000);
-    // } catch (error) {
-    //   const errorMessage = error.response?.data?.message || "Signup failed";
-    //   // dispatch(authFail(errorMessage));
-    //   toast.error(errorMessage);
-    // }
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        import.meta.env.VITE_DOMAIN + "/api/v1/user/register",
+        formData
+      );
+
+      const successMessage = response?.data?.message || "Signup Successful";
+      toast.success(successMessage);
+      navigate("/user/login");
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.message || "Signup failed";
+      toast.error(errorMessage);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <>
-      <Toaster
-        position="top-right"
-        reverseOrder={false}
-      />
       <div className="container my-5">
         <h1 className="text-center fw-bold mb-4">AR Code Magic</h1>
         {/* Registration Form */}
-        <div className="bg-white p-4 shadow-sm rounded mx-auto" style={{ maxWidth: "400px" }}>
+        <div
+          className="bg-white p-4 shadow-sm rounded mx-auto"
+          style={{ maxWidth: "400px" }}
+        >
           <form onSubmit={handleSubmit}>
             {/* Username */}
             <div className="mb-3 d-flex justify-content-between align-items-center">
               <label htmlFor="username" className="form-label fw-bold">
                 Username
               </label>
-              {/* <button
-              type="button"
-              className="btn btn-link p-0 text-primary text-decoration-none"
-              onClick={() => setPage("login")}
-            >
-              Log in
-            </button> */}
-              <Link
-                to="/user/login"
-                className="text-primary text-decoration-none"
-              >
+              <Link to="/user/login" className="text-primary text-decoration-none">
                 Log in
               </Link>
             </div>
@@ -127,7 +116,7 @@ function DReg_Registration() {
               />
             </div>
 
-            {/* Terms and Conditions */}
+            {/* Terms */}
             <div className="mb-3 form-check">
               <input
                 type="checkbox"
@@ -137,7 +126,7 @@ function DReg_Registration() {
               />
               <label htmlFor="terms" className="form-check-label">
                 I agree to the{" "}
-                <Link href="#terms" className="text-primary text-decoration-none">
+                <Link to="#terms" className="text-primary text-decoration-none">
                   terms and conditions
                 </Link>
               </label>
@@ -147,26 +136,30 @@ function DReg_Registration() {
             <div className="text-center">
               <button
                 type="submit"
-                className="btn btn-success mb-3"
+                className="btn btn-success mb-3 d-flex align-items-center justify-content-center w-100"
+                disabled={loading}
               >
-                Continue
+                {loading ? (
+                  <>
+                    <span
+                      className="spinner-border spinner-border-sm me-2"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                    Loading...
+                  </>
+                ) : (
+                  "Continue"
+                )}
               </button>
             </div>
 
             {/* Already Registered */}
             <div className="text-center">
               Already registered?{" "}
-              {/* <button
-              type="button"
-              className="btn btn-link text-primary text-decoration-none"
-              onClick={() => setPage("user/login")}
-            >
-              Please Log in
-            </button> */}
               <Link
                 to="/user/login"
                 className="text-primary text-decoration-none"
-
               >
                 Please Log in
               </Link>

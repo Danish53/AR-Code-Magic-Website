@@ -1,485 +1,117 @@
-// import React, { useState } from "react";
-// import "./Pricing.css";
-// import { Link } from "react-router-dom";
-// const Pricing = () => {
-//   const [activePlan, setActivePlan] = useState("monthly");
-
-//   const plans = {
-//     monthly: [
-//       {
-//         name: "Trial",
-//         price: "Free",
-//         features: ["3 AR Code Magics", "100 Scans per month", "AR Text Demo", "Personal use"],
-//         buttonText: "Get Started",
-//         promo: false,
-//         ribbonText: null,
-//       },
-//       {
-//         name: "Standard",
-//         price: "$9.99",
-//         features: ["10 AR Code Magics", "1,000 Scans per month", "AR Portal Access", "For individuals"],
-//         buttonText: "Subscribe Now",
-//         promo: true,
-//         ribbonText: "POPULAR",
-//       },
-//       {
-//         name: "Pro",
-//         price: "$19.99",
-//         features: ["Unlimited AR Code Magics", "Unlimited Scans", "Priority Support", "For businesses"],
-//         buttonText: "Subscribe Now",
-//         promo: true,
-//         ribbonText: "SAVE 17%",
-//       },
-//     ],
-//     yearly: [
-//       {
-//         name: "Trial",
-//         price: "Free",
-//         features: ["3 AR Code Magics", "100 Scans per month", "AR Text Demo", "Personal use"],
-//         buttonText: "Get Started",
-//         promo: false,
-//         ribbonText: null,
-//       },
-//       {
-//         name: "Standard",
-//         price: "$99.99",
-//         features: ["10 AR Code Magics", "1,000 Scans per month", "AR Portal Access", "For individuals"],
-//         buttonText: "Subscribe Now",
-//         promo: true,
-//         ribbonText: "POPULAR",
-//       },
-//       {
-//         name: "Pro",
-//         price: "$199.99",
-//         features: ["Unlimited AR Code Magics", "Unlimited Scans", "Priority Support", "For businesses"],
-//         buttonText: "Subscribe Now",
-//         promo: true,
-//         ribbonText: "SAVE 17%",
-//       },
-//     ],
-//   };
-
-//   return (
-//     <div className="container my-5">
-//       <div className="text-center">
-//         <h1>Choose your AR Code Magic plan</h1>
-//         <p className="text-center featureH" style={{ fontSize: "19px" }}>
-//           Our four iOS apps{" "}
-//           <Link className="text-decoration-none" to="#" rel="noopener noreferrer">
-//             AR Code Magic Object Capture
-//           </Link>
-//           ,{" "}
-//           <Link className="text-decoration-none" to="#" rel="noopener noreferrer">
-//             AR Text
-//           </Link>
-//           ,{" "}
-//           <Link className="text-decoration-none" to="#" rel="noopener noreferrer">
-//             AR Portal
-//           </Link>
-//           , and{" "}
-//           <Link className="text-decoration-none" to="#" rel="noopener noreferrer">
-//             AR Frame
-//           </Link>
-//           {' '}offer dedicated in-app plans.
-//         </p>
-
-
-//         <div className="toggle-container my-4">
-//           <div className="btn-group">
-//             <button
-//               className={`btn ${activePlan === "monthly" ? "btn-success" : "btn-outline-success"}`}
-//               onClick={() => setActivePlan("monthly")}
-//             >
-//               Monthly
-//             </button>
-//             <button
-//               className={`btn ${activePlan === "yearly" ? "btn-success" : "btn-outline-success"}`}
-//               onClick={() => setActivePlan("yearly")}
-//             >
-//               Yearly
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-
-//       <div className="row">
-//         {plans[activePlan].map((plan, index) => (
-//           <div className="col-md-4" key={index}>
-//             <div className="card price-table text-center mb-4">
-//               {/* <div className={`card price-table text-center ${plan.promo ? "border-success" : ""} mb-4`}> */}
-//               {plan.ribbonText && (
-//                 <div className="corner-ribbon top-left text-white">{plan.ribbonText}</div>
-//               )}
-//               <div className="card-body">
-//                 <h3 className="card-title text-primary-color fw-bold">{plan.name}</h3>
-//                 <h4 className="card-price text-secondary my-3 fw-bold">{plan.price}</h4>
-//                 <ul className="list-unstyled">
-//                   {plan.features.map((feature, i) => (
-//                     <li key={i}>{feature}</li>
-//                   ))}
-//                 </ul>
-//                 <Link to="/user/register" className="btn btn-custom btn-lg btn-success rounded-pill mt-3">
-//                   {plan.buttonText}
-//                 </Link>
-//               </div>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Pricing;
-
-
-
-
-
-
-
-
-
-// import React, { useState } from "react";
-// import { Link } from "react-router-dom";
-// import "./Pricing.css";
-
-// // PriceCard component with independent "expanded" state for each card.
-// const PriceCard = ({ plan }) => {
-//   const [expanded, setExpanded] = useState(false);
-
-//   // These values set the height for the features container.
-//   const collapsedHeight = "100px"; // Show roughly 4 features initially
-//   const expandedHeight = "500px";  // High enough to display full list when expanded
-
-//   return (
-//     <div className="col-md-4">
-//       {/* Removed h-100 so each card's height is determined by its content and CSS */}
-//       <div className={`card price-table text-center mb-4 ${plan.promo ? "border-success" : ""}`}>
-//         {plan.ribbonText && (
-//           <div className="corner-ribbon top-left text-white">{plan.ribbonText}</div>
-//         )}
-//         <div className="card-body d-flex flex-column">
-//           <h3 className="card-title text-primary-color fw-bold">{plan.name}</h3>
-//           <h4 className="card-price text-secondary my-3 fw-bold">{plan.price}</h4>
-//           {/* Features container with a smooth transition */}
-//           <div
-//             className="features-container mb-3"
-//             style={{
-//               maxHeight: expanded ? expandedHeight : collapsedHeight,
-//               overflow: "hidden",
-//               transition: "max-height 0.3s ease"
-//             }}
-//           >
-//             <ul className="list-unstyled mb-0">
-//               {plan.features.map((feature, i) => (
-//                 <li key={i}>{feature}</li>
-//               ))}
-//             </ul>
-//           </div>
-//           {/* Subscribe now button */}
-//           <Link
-//             to="/user/register"
-//             className="btn btn-custom btn-lg btn-success rounded-pill"
-//           >
-//             {plan.buttonText}
-//           </Link>
-//           {/* "Show More/Less" toggle appears below the subscribe button */}
-//           {plan.features.length > 4 && (
-//             <button
-//               onClick={() => setExpanded(!expanded)}
-//               className="btn btn-link mt-2"
-//               style={{ textDecoration: "underline" }}
-//             >
-//               {expanded ? "Show Less" : "Show More"}
-//             </button>
-//           )}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// const Pricing = () => {
-//   const [activePlan, setActivePlan] = useState("monthly");
-
-//   const plans = {
-//     monthly: [
-//       {
-//         name: "Trial",
-//         price: "Free",
-//         features: [
-//           "3 AR Code Magics",
-//           "100 Scans per month",
-//           "AR Text Demo",
-//           "Personal use",
-//         ],
-//         buttonText: "Get Started",
-//         promo: false,
-//         ribbonText: null,
-//       },
-//       {
-//         name: "Standard",
-//         price: "$9.99",
-//         features: [
-//           "100 AR Codes",
-//           "10,000 Scans per month",
-//           "Detailed Scan Statistics",
-//           "3D Files Upload",
-//           "AR Face, AR Photo",
-//           "AR Portal",
-//           "AR Logo",
-//           "AR Text",
-//           "AR Video",
-//           "AR Code Object Capture",
-//           "AI Code & AR Data API",
-//           "3D Models Download",
-//           "Custom Links",
-//           "100 Custom Pages",
-//           "100 Retargeting Tracking",
-//           "Advanced AR Code design customization",
-//           "Export Data",
-//           "AR Code Studio",
-//           "API Key",
-//           "Password Restriction",
-//           "Premium Support",
-//           "Commercial Licence",
-//         ],
-//         buttonText: "Subscribe Now",
-//         promo: true,
-//         ribbonText: "POPULAR",
-//       },
-//       {
-//         name: "Pro",
-//         price: "$19.99",
-//         features: [
-//           "1,000 AR Codes",
-//           "100,000 Scans per month",
-//           "10 Team Members",
-//           "Detailed Scan Statistics",
-//           "3D Files Upload",
-//           "AR Face, AR Photo",
-//           "AR Portal",
-//           "AR Logo",
-//           "AR Text",
-//           "AR Video",
-//           "AR Code Object Capture",
-//           "AI Code & AR Data API",
-//           "3D Models Download",
-//           "Custom Links",
-//           "1,000 Custom Pages",
-//           "1,000 Retargeting Tracking",
-//           "Advanced AR Code design customization",
-//           "Export Data",
-//           "AR Code Studio",
-//           "API Key",
-//           "Password Restriction",
-//           "Dedicated Support",
-//           "Commercial Licence",
-//           "Reseller Licence",
-//         ],
-//         buttonText: "Subscribe Now",
-//         promo: true,
-//         ribbonText: "SAVE 17%",
-//       },
-//     ],
-//     yearly: [
-//       {
-//         name: "Trial",
-//         price: "Free",
-//         features: [
-//           "3 AR Code Magics",
-//           "100 Scans per month",
-//           "AR Text Demo",
-//           "Personal use",
-//         ],
-//         buttonText: "Get Started",
-//         promo: false,
-//         ribbonText: null,
-//       },
-//       {
-//         name: "Standard",
-//         price: "$99.99",
-//         features: [
-//           "100 AR Codes",
-//           "10,000 Scans per month",
-//           "Detailed Scan Statistics",
-//           "3D Files Upload",
-//           "AR Face, AR Photo",
-//           "AR Portal",
-//           "AR Logo",
-//           "AR Text",
-//           "AR Video",
-//           "AR Code Object Capture",
-//           "AI Code & AR Data API",
-//           "3D Models Download",
-//           "Custom Links",
-//           "100 Custom Pages",
-//           "100 Retargeting Tracking",
-//           "Advanced AR Code design customization",
-//           "Export Data",
-//           "AR Code Studio",
-//           "API Key",
-//           "Password Restriction",
-//           "Premium Support",
-//           "Commercial Licence",
-//         ],
-//         buttonText: "Subscribe Now",
-//         promo: true,
-//         ribbonText: "POPULAR",
-//       },
-//       {
-//         name: "Pro",
-//         price: "$199.99",
-//         features: [
-//           "1,000 AR Codes",
-//           "100,000 Scans per month",
-//           "10 Team Members",
-//           "Detailed Scan Statistics",
-//           "3D Files Upload",
-//           "AR Face, AR Photo",
-//           "AR Portal",
-//           "AR Logo",
-//           "AR Text",
-//           "AR Video",
-//           "AR Code Object Capture",
-//           "AI Code & AR Data API",
-//           "3D Models Download",
-//           "Custom Links",
-//           "1,000 Custom Pages",
-//           "1,000 Retargeting Tracking",
-//           "Advanced AR Code design customization",
-//           "Export Data",
-//           "AR Code Studio",
-//           "API Key",
-//           "Password Restriction",
-//           "Dedicated Support",
-//           "Commercial Licence",
-//           "Reseller Licence",
-//         ],
-//         buttonText: "Subscribe Now",
-//         promo: true,
-//         ribbonText: "SAVE 17%",
-//       },
-//     ],
-//   };
-
-//   return (
-//     <div className="container my-5">
-//       <div className="text-center">
-//         <h1>Choose your AR Code Magic plan</h1>
-//         <p className="text-center featureH" style={{ fontSize: "19px" }}>
-//           Our four iOS apps{" "}
-//           <Link className="text-decoration-none" to="#" rel="noopener noreferrer">
-//             AR Code Magic Object Capture
-//           </Link>
-//           ,{" "}
-//           <Link className="text-decoration-none" to="#" rel="noopener noreferrer">
-//             AR Text
-//           </Link>
-//           ,{" "}
-//           <Link className="text-decoration-none" to="#" rel="noopener noreferrer">
-//             AR Portal
-//           </Link>
-//           , and{" "}
-//           <Link className="text-decoration-none" to="#" rel="noopener noreferrer">
-//             AR Frame
-//           </Link>{" "}
-//           offer dedicated in-app plans.
-//         </p>
-
-//         <div className="toggle-container my-4">
-//           <div className="btn-group">
-//             <button
-//               className={`btn ${activePlan === "monthly" ? "btn-success" : "btn-outline-success"}`}
-//               onClick={() => setActivePlan("monthly")}
-//             >
-//               Monthly
-//             </button>
-//             <button
-//               className={`btn ${activePlan === "yearly" ? "btn-success" : "btn-outline-success"}`}
-//               onClick={() => setActivePlan("yearly")}
-//             >
-//               Yearly
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-
-//       <div className="row">
-//         {plans[activePlan].map((plan, index) => (
-//           <PriceCard key={index} plan={plan} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Pricing;
-
-
-
-
-
-
-
-
-
-
-
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Pricing.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPackagesByType } from "../../../redux/packagesSlice";
+import useToken from "../../../hooks/useToken";
+import { loadStripe } from "@stripe/stripe-js";
+import toast from "react-hot-toast";
+import axios from "axios";
 
-// PriceCard component with independent "expanded" state for each card.
+const stripePromise = loadStripe("pk_test_51QjazMLXnweaevxiq4yKVjSGQIRtrEPQIcjmELqvRclAel5rMdptSkwxsAaT2YxdURY0A9VdYr2Tad095HOaawFi00NVabbxFE");
+
+// ✅ PriceCard Component
 const PriceCard = ({ plan }) => {
   const [expanded, setExpanded] = useState(false);
+  const token = useToken();
+  const { user } = useSelector((state) => state.auth);
+  const currentPlan = user?.user?.plan;
 
-  // These values set the height for the features container.
-  const collapsedHeight = "100px"; // Show roughly 4 features initially
-  const expandedHeight = "500px";  // High enough to display full list when expanded
+  // ✅ Compare both ID and plan_frequency (monthly/yearly)
+  const isCurrentPlan =
+    currentPlan &&
+    currentPlan.id === plan.id &&
+    currentPlan.plan_frequency === plan.plan_frequency;
+
+  const [loading, setLoading] = useState();
+
+  // stripe session create api
+  const handleCheckout = async () => {
+    setLoading(true);
+    try {
+
+      // API call to create checkout session
+      const { data } = await axios.post(import.meta.env.VITE_DOMAIN + "/api/v1/user/stripe-payment", {
+        user_id: user?.user?.id,
+        package_id: plan?.id
+      });
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        toast.error("Stripe URL not found");
+      }
+    } catch (error) {
+      toast.error("Payment session creation failed!");
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="col-md-6 col-lg-4">
-      {/* Removed the conditional border-success class */}
-      <div className="card price-table text-center mb-4">
-        {plan.ribbonText && (
-          <div className="corner-ribbon top-left text-white">{plan.ribbonText}</div>
-        )}
+      <div className={`card price-table text-center mb-4 ${isCurrentPlan ? "border-success shadow-lg" : ""}`}>
         <div className="card-body d-flex flex-column">
-          <h3 className="card-title text-primary-color fw-bold">{plan.name}</h3>
-          <h4 className="card-price text-secondary my-3 fw-bold">{plan.price}</h4>
-          {/* Features container with a smooth transition */}
-          <div
-            className="features-container mb-3"
-            style={{
-              maxHeight: expanded ? expandedHeight : collapsedHeight,
-              overflow: "hidden",
-              transition: "max-height 0.3s ease"
-            }}
-          >
-            <ul className="list-unstyled mb-0">
-              {plan.features.map((feature, i) => (
-                <li key={i}>{feature}</li>
-              ))}
-            </ul>
-          </div>
-          {/* Subscribe now button */}
-          <Link
-            to="/user/register"
-            className="btn btn-custom btn-lg btn-success rounded-pill"
-          >
-            {plan.buttonText}
-          </Link>
-          {/* "Show More/Less" toggle appears below the subscribe button */}
-          {plan.features.length > 4 && (
-            <button
-              onClick={() => setExpanded(!expanded)}
-              className="btn btn-link btn-link-custom-price mt-2"
-              style={{ textDecoration: "underline" }}
-            >
-              {expanded ? "Show Less" : "Show More"}
+          <h3 className="card-title text-primary-color fw-bold">{plan?.package_name}</h3>
+          <h4 className="card-price text-secondary mt-3 fw-bold fs-5">{plan?.package_title}</h4>
+          <h4 className="card-price text-secondary my-3 fw-bold">
+            {plan.discount_price ? (
+              <>
+                <del className="text-muted me-2">US${plan?.package_price}</del>
+                <span>US${plan.discount_price}</span> / {plan?.plan_frequency === 1 ? "month" : "year"}
+              </>
+            ) : (
+              <span>US${plan?.package_price}</span>
+            )}
+          </h4>
+
+          <ul className="list-unstyled mb-3">
+            <li>{plan?.ar_codes} AR Codes</li>
+            <li>{plan?.scans} Scans per month</li>
+            {plan?.package_name === "Trial" && (
+              <>
+                <li>AR Text Demo</li>
+                <li>Personal use</li>
+              </>
+            )}
+            {plan?.package_name === "PRO" && <li>10 Team members</li>}
+            {plan?.package_name !== "Trial" && (
+              <>
+                <li>Custom Links</li>
+                <li>{plan?.pages} Custom Pages</li>
+                <li>{plan?.tracking} Retargeting Tracking</li>
+                <li>Advanced AR Code design customization</li>
+                <li>Export Data</li>
+                <li>Password Restriction</li>
+                <li>Api Key</li>
+                <li>Premium Support</li>
+                <li>Commercial License</li>
+                <li>Reseller License</li>
+              </>
+            )}
+          </ul>
+
+          {/* ✅ Button Section */}
+          {isCurrentPlan ? (
+            <button className="btn btn-success btn-lg rounded-pill" disabled>
+              Current Plan ({plan.plan_frequency === 1 ? "Monthly" : "Yearly"})
             </button>
+          ) : token ? (
+            <button
+              onClick={handleCheckout}
+              disabled={loading}
+              className="btn btn-custom btn-lg btn-success rounded-pill"
+            >
+              {loading ? "Processing..." : "Continue"}
+            </button>
+          ) : (
+            <Link
+              to="/user/register"
+              className="btn btn-custom btn-lg btn-success rounded-pill"
+            >
+              Get Started
+            </Link>
           )}
         </div>
       </div>
@@ -489,167 +121,18 @@ const PriceCard = ({ plan }) => {
 
 const Pricing = () => {
   const [activePlan, setActivePlan] = useState("monthly");
+  const dispatch = useDispatch();
+  const { plans, loading, error } = useSelector((state) => state.packages);
 
-  const plans = {
-    monthly: [
-      {
-        name: "Trial",
-        price: "Free",
-        features: [
-          "3 AR Code Magics",
-          "100 Scans per month",
-          "AR Text Demo",
-          "Personal use",
-        ],
-        buttonText: "Get Started",
-        promo: false,
-        ribbonText: null,
-      },
-      {
-        name: "Standard",
-        price: "$89.99",
-        features: [
-          "100 AR Codes",
-          "10,000 Scans per month",
-          "Detailed Scan Statistics",
-          "3D Files Upload",
-          "AR Face, AR Photo",
-          "AR Portal",
-          "AR Logo",
-          "AR Text",
-          "AR Video",
-          "AR Code Object Capture",
-          "AI Code & AR Data API",
-          "3D Models Download",
-          "Custom Links",
-          "100 Custom Pages",
-          "100 Retargeting Tracking",
-          "Advanced AR Code design customization",
-          "Export Data",
-          "AR Code Studio",
-          "API Key",
-          "Password Restriction",
-          "Premium Support",
-          "Commercial Licence",
-        ],
-        buttonText: "Subscribe Now",
-        promo: true,
-        ribbonText: "POPULAR",
-      },
-      {
-        name: "Pro",
-        price: "$989.99",
-        features: [
-          "1,000 AR Codes",
-          "100,000 Scans per month",
-          "10 Team Members",
-          "Detailed Scan Statistics",
-          "3D Files Upload",
-          "AR Face, AR Photo",
-          "AR Portal",
-          "AR Logo",
-          "AR Text",
-          "AR Video",
-          "AR Code Object Capture",
-          "AI Code & AR Data API",
-          "3D Models Download",
-          "Custom Links",
-          "1,000 Custom Pages",
-          "1,000 Retargeting Tracking",
-          "Advanced AR Code design customization",
-          "Export Data",
-          "AR Code Studio",
-          "API Key",
-          "Password Restriction",
-          "Dedicated Support",
-          "Commercial Licence",
-          "Reseller Licence",
-        ],
-        buttonText: "Subscribe Now",
-        promo: true,
-        ribbonText: "SAVE 17%",
-      },
-    ],
-    yearly: [
-      {
-        name: "Trial",
-        price: "Free",
-        features: [
-          "3 AR Code Magics",
-          "100 Scans per month",
-          "AR Text Demo",
-          "Personal use",
-        ],
-        buttonText: "Get Started",
-        promo: false,
-        ribbonText: null,
-      },
-      {
-        name: "Standard",
-        price: "$889.99",
-        features: [
-          "100 AR Codes",
-          "10,000 Scans per month",
-          "Detailed Scan Statistics",
-          "3D Files Upload",
-          "AR Face, AR Photo",
-          "AR Portal",
-          "AR Logo",
-          "AR Text",
-          "AR Video",
-          "AR Code Object Capture",
-          "AI Code & AR Data API",
-          "3D Models Download",
-          "Custom Links",
-          "100 Custom Pages",
-          "100 Retargeting Tracking",
-          "Advanced AR Code design customization",
-          "Export Data",
-          "AR Code Studio",
-          "API Key",
-          "Password Restriction",
-          "Premium Support",
-          "Commercial Licence",
-        ],
-        buttonText: "Subscribe Now",
-        promo: true,
-        ribbonText: "POPULAR",
-      },
-      {
-        name: "Pro",
-        price: "$9,899.99",
-        features: [
-          "1,000 AR Codes",
-          "100,000 Scans per month",
-          "10 Team Members",
-          "Detailed Scan Statistics",
-          "3D Files Upload",
-          "AR Face, AR Photo",
-          "AR Portal",
-          "AR Logo",
-          "AR Text",
-          "AR Video",
-          "AR Code Object Capture",
-          "AI Code & AR Data API",
-          "3D Models Download",
-          "Custom Links",
-          "1,000 Custom Pages",
-          "1,000 Retargeting Tracking",
-          "Advanced AR Code design customization",
-          "Export Data",
-          "AR Code Studio",
-          "API Key",
-          "Password Restriction",
-          "Dedicated Support",
-          "Commercial Licence",
-          "Reseller Licence",
-        ],
-        buttonText: "Subscribe Now",
-        promo: true,
-        ribbonText: "SAVE 17%",
-      },
-    ],
-  };
+  useEffect(() => {
+    dispatch(fetchPackagesByType(1)); // Monthly
+    dispatch(fetchPackagesByType(2)); // Yearly
+  }, [dispatch]);
+
+  const currentPlans =
+    activePlan === "monthly"
+      ? plans.monthly || []
+      : plans.yearly || [];
 
   return (
     <div className="container my-5">
@@ -693,10 +176,16 @@ const Pricing = () => {
         </div>
       </div>
 
-      <div className="row ">
-        {plans[activePlan].map((plan, index) => (
-          <PriceCard key={index} plan={plan} />
-        ))}
+      <div className="row">
+        {loading ? (
+          <p className="text-center">Loading plans...</p>
+        ) : error ? (
+          <p className="text-center text-danger">{error}</p>
+        ) : currentPlans.length > 0 ? (
+          currentPlans.map((plan, index) => <PriceCard key={index} plan={plan} />)
+        ) : (
+          <p className="text-center text-muted">No plans available</p>
+        )}
       </div>
     </div>
   );

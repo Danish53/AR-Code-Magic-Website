@@ -52,15 +52,19 @@
 // export default Footer;
 
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./Footer.css"
 import { Link } from 'react-router-dom';
+import useToken from '../../hooks/useToken';
 
 const Footer = () => {
+
+  const token = useToken();
+
   const languages = [
     'English', '中文', 'Čeština', 'Dansk', 'Deutsch', 'Español', 'Suomi', 'Français',
-    'हिन्दी', 'Hrvatski', 'Magyar', 'Indonesia', 'Italiano', '日本語', '한국어', 
-    'Melayu', 'Norsk', 'Nederlands', 'Polski', 'Português', 'Română', 'Русский', 
+    'हिन्दी', 'Hrvatski', 'Magyar', 'Indonesia', 'Italiano', '日本語', '한국어',
+    'Melayu', 'Norsk', 'Nederlands', 'Polski', 'Português', 'Română', 'Русский',
     'Svenska', 'ไทย', 'Türkçe', '台灣', 'Tiếng Việt'
   ];
 
@@ -71,13 +75,21 @@ const Footer = () => {
           {/* Footer Links */}
           <div className="col-md-6">
             <h5 className="fw-bold mb-3">Quick Links</h5>
-            <ul className="list-unstyled">
-              <li><Link to="/terms-conditions" className="text-white text-decoration-none">Terms & Conditions</Link></li>
-              <li><Link to="/privacy-policy" className="text-white text-decoration-none">Privacy Policy</Link></li>
-              <li><Link to="/faq" className="text-white text-decoration-none">FAQ</Link></li>
-              <li><Link to="/blog" className="text-white text-decoration-none">Blog</Link></li>
-              <li><Link to="/contact-us" className="text-white text-decoration-none">Contact Us</Link></li>
-            </ul>
+            {
+              token ? <ul className="list-unstyled">
+                <li><Link to="/user/terms-conditions" className="text-white text-decoration-none">Terms & Conditions</Link></li>
+                <li><Link to="/user/privacy-policy" className="text-white text-decoration-none">Privacy Policy</Link></li>
+                <li><Link to="/user/faq" className="text-white text-decoration-none">FAQ</Link></li>
+                <li><Link to="/user/blog" className="text-white text-decoration-none">Blog</Link></li>
+                <li><Link to="/user/contact-us" className="text-white text-decoration-none">Contact Us</Link></li>
+              </ul> : <ul className="list-unstyled">
+                <li><Link to="/terms-conditions" className="text-white text-decoration-none">Terms & Conditions</Link></li>
+                <li><Link to="/privacy-policy" className="text-white text-decoration-none">Privacy Policy</Link></li>
+                <li><Link to="/faq" className="text-white text-decoration-none">FAQ</Link></li>
+                <li><Link to="/blog" className="text-white text-decoration-none">Blog</Link></li>
+                <li><Link to="/contact-us" className="text-white text-decoration-none">Contact Us</Link></li>
+              </ul>
+            }
           </div>
 
           {/* Footer Languages */}

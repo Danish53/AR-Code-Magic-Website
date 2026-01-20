@@ -249,7 +249,7 @@ function WebNavbar() {
             <li className="nav-item">
               <Link
                 className="btn fw-bold text-white px-4 py-2 text-uppercase btn-success nav-get-started"
-                to="/user"
+                to="/user/register"
                 onClick={closeNavbar}
               >
                 Get Started

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "./DD_ARExperienceSelector.css";
 import DD1_ArTextSection from "./DD1_ArTextSection";
 import DD2_ARPhotoSection from "./DD2_ARPhotoSection";
@@ -10,9 +10,20 @@ import DD6_ARLogoSection from "./DD6_ARLogoSection";
 import DD7_AICodeSection from "./DD7_AICodeSection";
 import DD8_ARDataSection from "./DD8_ARDataSection";
 import DD9_File3DSection from "./DD9_File3DSection";
+import DD_OptionsForm from "./DD_OptionsForm";
+import { useSelector } from "react-redux";
 // import DD_OptionsForm from "./DD_OptionsForm";
 
 function DD_ARExperienceSelector() {
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    return <Navigate to="/user/login" replace />;
+  }
+
   const [text, setText] = useState("Your text");
   const [font, setFont] = useState("Arial");
   const [color, setColor] = useState("#3f72c6");
@@ -26,12 +37,12 @@ function DD_ARExperienceSelector() {
     "AR Text",
     "AR Photo",
     "AR Portal",
-    "AR Face",
-    "AR Video",
     "AR Logo",
     "AI Code",
-    "AR Data",
+    // "AR Data",
     "3D File",
+    "AR Video",
+    "AR Face",
   ];
 
   const handleTabClick = (tab) => {
@@ -43,25 +54,25 @@ function DD_ARExperienceSelector() {
       case "AR Text":
         return (
           <>
-              <DD1_ArTextSection
-                text={text}
-                setText={setText}
-                font={font}
-                setFont={setFont}
-                color={color}
-                setColor={setColor}
-                depth={depth}
-                setDepth={setDepth}
-                gloss={gloss}
-                setGloss={setGloss}
-                scale={scale}
-                setScale={setScale}
-                orientation={orientation}
-                setOrientation={setOrientation}
-                // handleChange={handleChange}
-                // formData={formData}
-              />
-              {/* <DD_OptionsForm /> */}
+            <DD1_ArTextSection
+              text={text}
+              setText={setText}
+              font={font}
+              setFont={setFont}
+              color={color}
+              setColor={setColor}
+              depth={depth}
+              setDepth={setDepth}
+              gloss={gloss}
+              setGloss={setGloss}
+              scale={scale}
+              setScale={setScale}
+              orientation={orientation}
+              setOrientation={setOrientation}
+            // handleChange={handleChange}
+            // formData={formData}
+            />
+            {/* <DD_OptionsForm /> */}
           </>
         );
       case "AR Photo":
@@ -107,10 +118,10 @@ function DD_ARExperienceSelector() {
             {tabs.map((tab) => (
               <li className="nav-item" key={tab}>
                 <button
-                  className={`nav-link navlinkCustom ${
-                    activeTab === tab ? "active" : ""
-                  }`}
+                  className={`nav-link navlinkCustom ${activeTab === tab ? "active" : ""
+                    }`}
                   onClick={() => handleTabClick(tab)}
+                  disabled={user?.user?.plan?.package_name === "Trial"}
                 >
                   {tab}
                 </button>
